@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "category": "Accounts & Finance",
+    "openPosition": "23",
+    "image": "https://i.ibb.co.com/2sKbdxd/icon1.png"
+  },
+  {
+    "id": 2,
+    "category": "Marketing",
+    "openPosition": "13",
+    "image": "https://i.ibb.co.com/q0tzRG3/icon2.png"
+  },
+  {
+    "id": 3,
+    "category": "Creative Design",
+    "openPosition": "33",
+    "image": "https://i.ibb.co.com/Lh9TSHF/icon3.png"
+  },
+  {
+    "id": 4,
+    "category": "Engineering Job",
+    "openPosition": "23",
+    "image": "https://i.ibb.co.com/sFwpCM6/icon4.png"
+  },
+  {
+    "id": 5,
+    "category": "Human Resource",
+    "openPosition": "36",
+    "image": "https://i.ibb.co.com/Ln5Mc19/icon5.png"
+  },
+  {
+    "id": 6,
+    "category": "Automative Jobs",
+    "openPosition": "53",
+    "image": "https://i.ibb.co.com/10ptq02/icon6.png"
+  },
+  {
+    "id": 7,
+    "category": "Customer Services",
+    "openPosition": "15",
+    "image": "https://i.ibb.co.com/yXTnt2C/icon7.png"
+  },
+  {
+    "id": 8,
+    "category": "Health and Care",
+    "openPosition": "30",
+    "image": "https://i.ibb.co.com/fHcpk2w/icon8.png"
+  },
+  {
+    "id": 9,
+    "category": "Project Management",
+    "openPosition": "50",
+    "image": "https://i.ibb.co.com/80JXBNg/icon9.png"
+  }
+]
