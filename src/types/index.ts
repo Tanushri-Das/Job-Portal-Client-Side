@@ -21,3 +21,11 @@ export interface Job {
     email: string;
   };
 }
+export interface Form {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  imageUrl: string;
+}
