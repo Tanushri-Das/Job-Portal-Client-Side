@@ -1,7 +1,7 @@
 import { Category } from "@/types";
 import Heading from "./Heading";
 import JobCategoryCard from "./JobCategoryCard";
-import useCategories from "@/Hooks/UseCategories";
+import useCategories from "@/Hooks/useCategories";
 
 const JobCategory = () => {
   const [categories] = useCategories();

@@ -6,7 +6,7 @@ import useJobs from "@/Hooks/useJobs";
 
 const FeaturedJobs = () => {
   const [jobs] = useJobs();
-  
+
   return (
     <div className="pb-14">
       <Heading
@@ -15,7 +15,7 @@ const FeaturedJobs = () => {
       />
       <div className="w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 mt-9 gap-12 items-center">
         {jobs?.slice(0, 6).map((job: Job) => (
-          <Link to={`/job/${job._id}`} key={job._id}>
+          <Link to={`/jobdetails/${job._id}`} key={job._id}>
             <JobCard job={job} />
           </Link>
         ))}
