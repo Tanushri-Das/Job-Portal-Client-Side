@@ -1,17 +1,12 @@
-import { useEffect, useState } from "react";
 import Heading from "./Heading";
 import { Link } from "react-router-dom";
 import { Job } from "@/types";
 import JobCard from "./JobCard";
+import useJobs from "@/Hooks/useJobs";
 
 const FeaturedJobs = () => {
-  const [featuredJobs, setFeaturedJobs] = useState<Job[]>([]);
-
-  useEffect(() => {
-    fetch("jobs.json")
-      .then((res) => res.json())
-      .then((data) => setFeaturedJobs(data));
-  }, []);
+  const [jobs] = useJobs();
+  
   return (
     <div className="pb-14">
       <Heading
@@ -19,13 +14,11 @@ const FeaturedJobs = () => {
         subHeading="Know your worth and find the job that qualify your life"
       />
       <div className="w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 mt-9 gap-12 items-center">
-        {featuredJobs?.map((job) => {
-          return (
-            <Link to={`/job/${job.id}`} key={job.id}>
-              <JobCard job={job} />
-            </Link>
-          );
-        })}
+        {jobs?.slice(0, 6).map((job: Job) => (
+          <Link to={`/job/${job._id}`} key={job._id}>
+            <JobCard job={job} />
+          </Link>
+        ))}
       </div>
       <Link to="/alljobs">
         <div className="text-center mt-8">

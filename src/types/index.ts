@@ -1,11 +1,11 @@
 export interface Category {
-  id: number;
+  _id: number;
   image: string;
   category: string;
   openPosition: string;
 }
 export interface Job {
-  id: number;
+  _id: number;
   image: string;
   title: string;
   remote_or_onsite: string;

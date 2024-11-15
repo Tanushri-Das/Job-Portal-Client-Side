@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
+import { Category } from "@/types";
 import Heading from "./Heading";
 import JobCategoryCard from "./JobCategoryCard";
-import { Category } from "@/types";
+import useCategories from "@/Hooks/UseCategories";
 
 const JobCategory = () => {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  useEffect(() => {
-    fetch("category.json")
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
+  const [categories] = useCategories();
 
   return (
     <div className="pb-14">
@@ -19,8 +13,8 @@ const JobCategory = () => {
         subHeading="Explore thousands of job opportunities with all the information you need. It's your future"
       />
       <div className="w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-9 gap-12 items-center">
-        {categories?.map((category) => (
-          <JobCategoryCard key={category.id} category={category} />
+        {categories?.map((category: Category) => (
+          <JobCategoryCard key={category._id} category={category} />
         ))}
       </div>
     </div>
