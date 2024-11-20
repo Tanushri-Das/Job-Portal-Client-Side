@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import SocialLogin from "@/components/SocialLogin";
+import useAuth from "@/Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const {
@@ -11,19 +13,51 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    watch,
   } = useForm<Form>();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
+  const { login } = useAuth();
 
   const togglePasswordVisibility = () => setShowPassword(!showPassword);
+
+  const onSubmit = (data: Form) => {
+    const { email, password } = data; // Get email and password from form data
+
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+
+        Swal.fire({
+          title: "Good job!",
+          text: "You logged in successfully!",
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error("Login error:", error);
+        Swal.fire({
+          title: "Error!",
+          text: "Login failed. Please try again.",
+          icon: "error",
+          showConfirmButton: true,
+        });
+      });
+  };
 
   return (
     <div className="lg:mx-10 xl:mx-20 my-12 mx-2 sm:mx-0">
       <div className="w-full flex-shrink-0 sm:max-w-lg mx-auto">
-        <form className="space-y-4 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4 max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md"
+        >
           <h1 className="text-black text-center text-4xl mb-6 font-bold">
             Login
           </h1>

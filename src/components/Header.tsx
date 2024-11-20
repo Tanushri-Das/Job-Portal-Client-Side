@@ -4,13 +4,21 @@ import { FaXmark } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useTheme } from "@/components/theme-provider";
+import useAuth from "@/Hooks/useAuth";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
+  console.log("user", user);
   const { theme } = useTheme();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
+  };
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -19,7 +27,7 @@ const Header = () => {
         theme === "dark" ? "bg-gray-800 text-gray-200" : "bg-white text-black"
       }`}
     >
-      <div className="px-10 py-4 flex items-center justify-between">
+      <div className="w-[90%] mx-auto py-4 flex items-center justify-between">
         {/* Left: Logo */}
         <div className="text-lg font-bold lg:flex-grow-0">
           <Link to="/">
@@ -27,7 +35,7 @@ const Header = () => {
               {/* <Image alt="logo" src={logo} height={80} width={80} /> */}
               <h1
                 className="text-3xl font-bold italic lg:block 
-        text-[#151515] tracking-wide dark:text-gray-300 dark:ms-2
+        text-[#151515] tracking-wide dark:text-gray-300
         transition-all duration-300 ease-in-out 
         hover:scale-105"
               >
@@ -56,6 +64,20 @@ const Header = () => {
               Home
             </NavLink>
             <NavLink
+              to="/alljobs"
+              className={({ isActive }) =>
+                `text-lg ${
+                  isActive
+                    ? `${
+                        theme === "dark" ? "text-white" : "text-black"
+                      } font-bold`
+                    : "text-[#737373]"
+                }`
+              }
+            >
+              All Jobs
+            </NavLink>
+            <NavLink
               to="/applied-jobs"
               className={({ isActive }) =>
                 `text-lg ${
@@ -69,20 +91,29 @@ const Header = () => {
             >
               Applied Jobs
             </NavLink>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                `text-lg ${
-                  isActive
-                    ? `${
-                        theme === "dark" ? "text-white" : "text-black"
-                      } font-bold`
-                    : "text-[#737373]"
-                }`
-              }
-            >
-              Login
-            </NavLink>
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="px-6 rounded-lg py-2 bg-blue-600 text-white font-semibold transition-all duration-300"
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `text-lg ${
+                    isActive
+                      ? `${
+                          theme === "dark" ? "text-white" : "text-black"
+                        } font-bold`
+                      : "text-[#737373]"
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+            )}
           </div>
         </nav>
 
