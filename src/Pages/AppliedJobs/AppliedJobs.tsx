@@ -2,14 +2,22 @@ import AppliedJobsCard from "@/components/AppliedJobsCard";
 import FilterJobs from "@/components/FilterJobs";
 import Heading from "@/components/Heading";
 import useAppliedJobs from "@/Hooks/useAppliedJobs";
-import { useState } from "react";
 import type { AppliedJobs } from "@/types";
+import { useEffect, useState } from "react";
 
 const AppliedJobs = () => {
   const [appliedJobs] = useAppliedJobs();
-  const [filteredJobs, setFilteredJobs] = useState<AppliedJobs[]>(appliedJobs);
+  console.log("appliedJobs:", appliedJobs);
 
-  // Handle filtering
+  const [filteredJobs, setFilteredJobs] = useState<AppliedJobs[]>([]);
+
+  // Update filteredJobs when appliedJobs changes
+  useEffect(() => {
+    if (appliedJobs.length > 0) {
+      setFilteredJobs(appliedJobs);
+    }
+  }, [appliedJobs]);
+
   const handleFilter = (filter: string) => {
     if (filter) {
       const filtered = appliedJobs.filter(
@@ -34,13 +42,9 @@ const AppliedJobs = () => {
         <FilterJobs onFilter={handleFilter} />
       </div>
       <div className="space-y-8">
-        {filteredJobs.length === 0 ? (
-          <p>Loading or no jobs found...</p>
-        ) : (
-          filteredJobs.map((job: AppliedJobs) => (
-            <AppliedJobsCard key={job._id} job={job} />
-          ))
-        )}
+        {filteredJobs.map((job: AppliedJobs) => (
+          <AppliedJobsCard key={job._id} job={job} />
+        ))}
       </div>
     </div>
   );

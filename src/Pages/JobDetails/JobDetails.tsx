@@ -10,7 +10,7 @@ const JobDetails = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const currentLocation = useLocation();
-  const [appliedJobs] = useAppliedJobs();
+  const [appliedJobs, refetch] = useAppliedJobs();
 
   // Check if already applied
   const alreadyApplied = appliedJobs?.some(
@@ -69,6 +69,7 @@ const JobDetails = () => {
       const data = await res.json();
 
       if (data.insertedId) {
+        refetch();
         Swal.fire({
           position: "top-end",
           icon: "success",
