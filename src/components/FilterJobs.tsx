@@ -25,7 +25,7 @@ const FilterJobs: React.FC<FilterJobsProps> = ({ onFilter }) => {
           id="priceRange"
           value={selectedValue}
           onChange={handleSelectChange}
-          className="block w-full py-3 px-8 text-lg font-semibold border border-gray-300 rounded text-black outline-none"
+          className="block w-full py-3 px-8 text-[16px] font-semibold border border-gray-300 rounded text-black outline-none"
         >
           <option value="">Filter By</option>
           <option value="Remote">Remote</option>
