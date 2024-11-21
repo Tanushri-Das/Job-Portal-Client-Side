@@ -11,6 +11,7 @@ import {
   User,
   UserCredential,
   GoogleAuthProvider,
+  GithubAuthProvider,
 } from "firebase/auth";
 
 interface AuthContextType {
@@ -21,6 +22,7 @@ interface AuthContextType {
   logOut: () => Promise<void>;
   loading: boolean;
   googleSignIn: () => Promise<UserCredential>;
+  githubSignIn: () => Promise<UserCredential>;
 }
 
 // Default value for the context
@@ -42,6 +44,9 @@ const defaultAuthContext: AuthContextType = {
   googleSignIn: async () => {
     throw new Error("googleSignIn function is not implemented");
   },
+  githubSignIn: async () => {
+    throw new Error("githubSignIn function is not implemented");
+  },
 };
 
 export const AuthContext = createContext<AuthContextType>(defaultAuthContext);
@@ -55,6 +60,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const createUser = (email: string, password: string) => {
     setLoading(true);
@@ -74,6 +80,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
+  };
+  const githubSignIn = () => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
   };
   const logOut = () => {
     setLoading(true);
@@ -98,6 +108,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     logOut,
     loading,
     googleSignIn,
+    githubSignIn,
   };
 
   return (
