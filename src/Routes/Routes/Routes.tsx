@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../Pages/Home/Home";
-import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
+import Home from "../../Pages/Home/Home";
+import AppliedJobs from "../../Pages/AppliedJobs/AppliedJobs";
 import Main from "@/Layout/Main";
 import Login from "@/Pages/Login/Login";
 import Signup from "@/Pages/Signup/Signup";
 import AllJobs from "@/Pages/AllJobs/AllJobs";
 import JobDetails from "@/Pages/JobDetails/JobDetails";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 const routes = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/applied-jobs",
-        element: <AppliedJobs />,
+        element: (
+          <PrivateRoutes>
+            <AppliedJobs />
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/login",
