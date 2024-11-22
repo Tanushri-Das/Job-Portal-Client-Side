@@ -3,12 +3,12 @@ import heroImg from "@/assets/images/hero.svg";
 const Hero = () => {
   return (
     <div className="py-14">
-      <div className="w-[100%] h-[60vh] flex flex-col items-center justify-center">
+      <div className="w-full flex flex-col items-center justify-center">
         <div className="w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-4">
           {/* content */}
           <div>
             <h1 className="text-[28px] sm:text-[35px] lg:text-[45px] xl:text-[60px] text-[#05264e]leading-[3rem] lg:leading-[4rem] font-extrabold">
-              The <span className="text-blue-500">Easiest Way</span> <br /> To
+              The <span className="text-indigo-500">Easiest Way</span> <br /> To
               Get Your New Job
             </h1>
             <p className="text-[#4f5e64] text-[16px] md:text-[18px] mt-4">
@@ -40,7 +40,7 @@ const Hero = () => {
                   placeholder="Search Job ..."
                   className="py-4 outline-none"
                 />
-                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none bg-blue-600 text-[16px] rounded-md font-semibold text-white px-6 py-2">
+                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none bg-indigo-600 text-[16px] rounded-md font-semibold text-white px-6 py-2">
                   Search
                 </button>
               </div>

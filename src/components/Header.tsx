@@ -40,7 +40,7 @@ const Header = () => {
         transition-all duration-300 ease-in-out 
         hover:scale-105"
               >
-                Car<span className="text-[#FF3811]">Care</span>
+                Quick<span className="text-[#FF3811]">Hire</span>
               </h1>
             </div>
           </Link>
@@ -145,7 +145,7 @@ const Header = () => {
         <div
           className={`fixed top-0 left-0 h-full bg-white dark:bg-gray-800 transition-transform transform ${
             isDrawerOpen ? "translate-x-0" : "-translate-x-full"
-          } w-[200px] z-50`}
+          } w-2/4 sm:w-2/5 z-50 lg:hidden`}
         >
           <div className="flex justify-end p-4">
             <button onClick={toggleDrawer}>
@@ -155,23 +155,93 @@ const Header = () => {
 
           {/* Drawer Navigation */}
           <nav className="flex flex-col gap-y-4 p-5 font-semibold text-lg lg:text-[16px]">
-            <NavLink to="/" className="text-lg" onClick={toggleDrawer}>
+            <NavLink
+              to="/"
+              onClick={toggleDrawer}
+              className={({ isActive }) =>
+                `text-lg ${
+                  isActive
+                    ? `${
+                        theme === "dark" ? "text-white" : "text-black"
+                      } font-bold`
+                    : "text-[#737373]"
+                }`
+              }
+            >
               Home
             </NavLink>
             <NavLink
-              to="/applied-jobs"
-              className="text-lg"
+              to="/alljobs"
               onClick={toggleDrawer}
+              className={({ isActive }) =>
+                `text-lg ${
+                  isActive
+                    ? `${
+                        theme === "dark" ? "text-white" : "text-black"
+                      } font-bold`
+                    : "text-[#737373]"
+                }`
+              }
+            >
+              All Jobs
+            </NavLink>
+            <NavLink
+              to="/applied-jobs"
+              onClick={toggleDrawer}
+              className={({ isActive }) =>
+                `text-lg ${
+                  isActive
+                    ? `${
+                        theme === "dark" ? "text-white" : "text-black"
+                      } font-bold`
+                    : "text-[#737373]"
+                }`
+              }
             >
               Applied Jobs
             </NavLink>
+
+            {/* Display User Image if Logged In */}
+            {user && users && (
+              <div className="flex items-center gap-x-8">
+                <img
+                  src={user.photoURL || users.imageUrl} // Ensure you are using the correct image URL
+                  alt="User Profile"
+                  className="w-14 h-14 rounded-full object-cover"
+                />
+              </div>
+            )}
+
+            {user ? (
+              <button
+                onClick={handleLogout}
+                className="w-[90%] sm:w-1/2 px-6 rounded-lg py-2 bg-blue-600 text-white font-semibold transition-all duration-300"
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                  `text-lg ${
+                    isActive
+                      ? `${
+                          theme === "dark" ? "text-white" : "text-black"
+                        } font-bold`
+                      : "text-[#737373]"
+                  }`
+                }
+              >
+                Login
+              </NavLink>
+            )}
           </nav>
         </div>
 
         {/* Overlay */}
         {isDrawerOpen && (
           <div
-            className="fixed inset-0 bg-black/50 z-40"
+            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
             onClick={toggleDrawer}
           ></div>
         )}
