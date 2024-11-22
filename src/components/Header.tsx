@@ -5,16 +5,18 @@ import { Link, NavLink } from "react-router-dom";
 import { ModeToggle } from "@/components/mode-toggle";
 import { useTheme } from "@/components/theme-provider";
 import useAuth from "@/Hooks/useAuth";
+import useGetUsers from "@/Hooks/useGetUsers";
 
 const Header = () => {
   const { user, logOut } = useAuth();
-  console.log("user", user);
+  const [users] = useGetUsers();
   const { theme } = useTheme();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
+
   const handleLogout = () => {
     logOut()
       .then(() => {})
@@ -32,7 +34,6 @@ const Header = () => {
         <div className="text-lg font-bold lg:flex-grow-0">
           <Link to="/">
             <div className="flex justify-center items-center">
-              {/* <Image alt="logo" src={logo} height={80} width={80} /> */}
               <h1
                 className="text-3xl font-bold italic lg:block 
         text-[#151515] tracking-wide dark:text-gray-300
@@ -48,7 +49,6 @@ const Header = () => {
         {/* Center: Navigation (Hidden on small screens) */}
         <nav className="hidden lg:flex lg:inset-0 lg:justify-center lg:items-center">
           <div className="flex items-center gap-x-8 font-semibold text-lg">
-            {/* Hardcoded Navigation Links */}
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -91,6 +91,18 @@ const Header = () => {
             >
               Applied Jobs
             </NavLink>
+
+            {/* Display User Image if Logged In */}
+            {user && users && (
+              <div className="flex items-center gap-x-8">
+                <img
+                  src={user.photoURL || users.imageUrl} // Ensure you are using the correct image URL
+                  alt="User Profile"
+                  className="w-14 h-14 rounded-full object-cover"
+                />
+              </div>
+            )}
+
             {user ? (
               <button
                 onClick={handleLogout}
@@ -135,7 +147,6 @@ const Header = () => {
             isDrawerOpen ? "translate-x-0" : "-translate-x-full"
           } w-[200px] z-50`}
         >
-          {/* Close Icon inside Drawer, positioned to the right */}
           <div className="flex justify-end p-4">
             <button onClick={toggleDrawer}>
               <FaXmark className="text-2xl" />
@@ -144,7 +155,6 @@ const Header = () => {
 
           {/* Drawer Navigation */}
           <nav className="flex flex-col gap-y-4 p-5 font-semibold text-lg lg:text-[16px]">
-            {/* Hardcoded Drawer Links */}
             <NavLink to="/" className="text-lg" onClick={toggleDrawer}>
               Home
             </NavLink>

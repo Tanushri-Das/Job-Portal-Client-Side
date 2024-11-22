@@ -17,7 +17,7 @@ import {
 interface AuthContextType {
   createUser: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
-  updateUserProfile: (name: string) => Promise<void>;
+  updateUserProfile: (name: string, photo: string) => Promise<void>;
   user: User | null;
   logOut: () => Promise<void>;
   loading: boolean;
@@ -72,11 +72,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const updateUserProfile = (name: string) => {
+  const updateUserProfile = (name: string, photo: string) => {
     return updateProfile(auth.currentUser!, {
       displayName: name,
+      photoURL: photo,
     });
   };
+
   const googleSignIn = () => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);

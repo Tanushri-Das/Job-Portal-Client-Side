@@ -9,6 +9,8 @@ import SocialLogin from "@/components/SocialLogin";
 import Swal from "sweetalert2";
 import useAuth from "@/Hooks/useAuth";
 
+const img_hosting_token = import.meta.env.VITE_Image_Upload_token;
+
 const Signup = () => {
   const {
     register,
@@ -30,54 +32,87 @@ const Signup = () => {
 
   const onSubmit = async (data: Omit<Form, "imageUrl">) => {
     try {
-      // Prepare phone number
-      const countryCode = phoneNumber.slice(0, phoneNumber.length - 10);
-      const phone = phoneNumber.slice(-10);
-
-      const userData = {
-        firstname: data.firstname,
-        lastname: data.lastname,
-        email: data.email,
-        phoneNumber: `+${countryCode}${phone}`,
-      };
-
-      // Create the user in auth system
-      const createUserResult = await createUser(data.email, data.password);
-      const loggedUser = createUserResult.user;
-
-      console.log("Logged in user:", loggedUser);
-
-      // Update user profile
-      await updateUserProfile(`${data.firstname} ${data.lastname}`);
-
-      console.log("User profile updated successfully");
-
-      // Save full data to the database
-      const saveUserResponse = await fetch("http://localhost:5000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
-
-      const saveUserData = await saveUserResponse.json();
-
-      if (saveUserData.insertedId) {
-        // Reset form and notify user
-        reset();
+      // Select image file from input
+      const fileInput = document.querySelector<HTMLInputElement>("#imageInput");
+      const file = fileInput?.files?.[0];
+      if (!file) {
         Swal.fire({
-          title: "Good job!",
-          text: "Congratulations! Sign Up Successfully!",
-          icon: "success",
+          title: "Error",
+          text: "Please upload an image",
+          icon: "error",
           timer: 1500,
           showConfirmButton: false,
         });
+        return;
+      }
 
-        // Redirect to homepage
-        navigate("/");
-      } else {
-        throw new Error("Failed to save user to the database");
+      // Prepare form data for image upload
+      const formData = new FormData();
+      formData.append("image", file);
+
+      // Upload image to imgbb
+      const imgHostingURL = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+      const response = await fetch(imgHostingURL, {
+        method: "POST",
+        body: formData,
+      });
+
+      const imgResponse = await response.json();
+
+      if (imgResponse.success) {
+        const imgURL = imgResponse.data.display_url;
+
+        // Prepare phone number
+        const countryCode = phoneNumber.slice(0, phoneNumber.length - 10);
+        const phone = phoneNumber.slice(-10);
+
+        // Combine form data with additional details
+        const submittedData = {
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          phoneNumber: `+${countryCode}${phone}`,
+          imageUrl: imgURL,
+        };
+
+        // Create the user in auth system
+        const createUserResult = await createUser(data.email, data.password);
+        const loggedUser = createUserResult.user;
+
+        console.log("Logged in user:", loggedUser);
+
+        // Update user profile
+        await updateUserProfile(`${data.firstname} ${data.lastname}`, imgURL);
+
+        console.log("User profile updated successfully");
+
+        // Save full data to the database
+        const saveUserResponse = await fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(submittedData),
+        });
+
+        const saveUserData = await saveUserResponse.json();
+
+        if (saveUserData.insertedId) {
+          // Reset form and notify user
+          reset();
+          Swal.fire({
+            title: "Good job!",
+            text: "Congratulations! Sign Up Successfully!",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false,
+          });
+
+          // Redirect to homepage
+          navigate("/");
+        } else {
+          throw new Error("Failed to save user to the database");
+        }
       }
     } catch (error: any) {
       console.error("Error in onSubmit:", error.message || error);
@@ -178,7 +213,7 @@ const Signup = () => {
             </div>
           </div>
           {/* Image Upload */}
-          {/* <div>
+          <div>
             <label className="block text-black text-lg font-semibold mb-1">
               Photo Upload
             </label>
@@ -187,7 +222,7 @@ const Signup = () => {
               id="imageInput"
               className="border text-black border-gray-300 rounded-md w-full p-3 outline-none"
             />
-          </div> */}
+          </div>
           {/* Password and Confirm Password */}
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex-1">
