@@ -1,44 +1,33 @@
-import { useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface FilterJobsProps {
   onFilter: (filter: string) => void;
 }
 
 const FilterJobs: React.FC<FilterJobsProps> = ({ onFilter }) => {
-  const [selectedValue, setSelectedValue] = useState("");
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = e.target.value;
-    setSelectedValue(value);
+  const handleSelectChange = (value: string) => {
     onFilter(value);
   };
 
-  const handleReset = () => {
-    setSelectedValue("");
-    onFilter("");
-  };
-
   return (
-    <>
-      <div className="flex items-center mt-4 sm:mt-0">
-        <select
-          id="priceRange"
-          value={selectedValue}
-          onChange={handleSelectChange}
-          className="block w-full py-3 px-8 text-[16px] font-semibold border border-gray-300 rounded text-black outline-none"
-        >
-          <option value="">Filter By</option>
-          <option value="Remote">Remote</option>
-          <option value="Onsite">Onsite</option>
-        </select>
-        <button
-          className="ml-2 2xl:ml-4 px-6 rounded-md py-3 font-semibold bg-blue-700 hover:bg-blue-900 transition-all duration-300 text-white"
-          onClick={handleReset}
-        >
-          Reset
-        </button>
-      </div>
-    </>
+    <div className="flex items-center mt-4 sm:mt-0">
+      <Select onValueChange={handleSelectChange}>
+        <SelectTrigger className="w-[180px] py-3 text-[16px] font-semibold border border-gray-300 rounded text-black">
+          <SelectValue placeholder="Filter By" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All</SelectItem>
+          <SelectItem value="Remote">Remote</SelectItem>
+          <SelectItem value="Onsite">Onsite</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
   );
 };
 
