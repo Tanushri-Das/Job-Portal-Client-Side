@@ -48,10 +48,9 @@ const JobDetails = () => {
     const applyJob = {
       jobId: job._id,
       image: job.image,
-      title: job.title,
-      remote_or_onsite: job.remote_or_onsite,
+      role: job.role,
       location: job.location,
-      jobtype: job.jobtype,
+      job_type: job.job_type,
       salary: job.salary,
       name: user.displayName,
       email: user.email,
@@ -129,8 +128,8 @@ const JobDetails = () => {
         <p className="mt-4 text-black text-opacity-70">
           {job.educational_requirements}
         </p>
-        <h1 className="text-xl font-semibold mt-6">Experiences</h1>
-        <p className="mt-4 text-black text-opacity-70">{job.experiences}</p>
+        <h1 className="text-xl font-semibold mt-6">experience</h1>
+        <p className="mt-4 text-black text-opacity-70">{job.experience}</p>
       </div>
     </div>
   );

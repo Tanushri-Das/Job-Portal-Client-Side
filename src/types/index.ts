@@ -7,20 +7,27 @@ export interface Category {
 export interface Job {
   _id: string;
   image: string;
-  title: string;
-  remote_or_onsite: string;
+  role: string;
   location: string;
-  jobtype: string;
+  office_location: string;
+  job_type: string;
   salary: string;
   job_description: string;
   job_responsibility: string;
   educational_requirements: string;
-  experiences: string;
+  experience: string;
   contact_information: {
     phone: string;
     email: string;
   };
 }
+export interface SearchJob {
+  role: string;
+  type: string;
+  location: string;
+  experience: string;
+}
+
 export interface Form {
   firstname: string;
   lastname: string;
@@ -35,10 +42,10 @@ export interface AppliedJobs {
   _id: string;
   jobId: string;
   image: string;
-  title: string;
-  remote_or_onsite: string;
+  role: string;
   location: string;
-  jobtype: string;
+  office_location: string;
+  job_type: string;
   salary: string;
   email: string;
 }

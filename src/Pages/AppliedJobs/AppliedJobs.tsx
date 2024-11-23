@@ -23,9 +23,9 @@ const AppliedJobs = () => {
       // Show all jobs when 'all' is selected
       setFilteredJobs(appliedJobs);
     } else {
-      // Filter jobs by remote_or_onsite value
+      // Filter jobs by location value
       const filtered = appliedJobs.filter(
-        (job: AppliedJobs) => job.remote_or_onsite === filter
+        (job: AppliedJobs) => job.location === filter
       );
       setFilteredJobs(filtered);
     }

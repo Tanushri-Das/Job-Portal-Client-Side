@@ -11,12 +11,12 @@ const AppliedJobsCard = ({ job }: { job: AppliedJobs }) => {
           <div>
             <img
               src={job.image}
-              alt={job.title}
+              alt={job.role}
               className="w-[100px] h-[100px]"
             />
           </div>
           <div>
-            <h1 className="text-lg font-semibold mb-2">{job.title}</h1>
+            <h1 className="text-lg font-semibold mb-2">{job.role}</h1>
             <div className="flex items-center space-x-4 md:space-x-10">
               <div className="flex items-center space-x-2">
                 <FaMapLocation className="w-[0.8rem] h-[0.8rem] text-pink-700" />
@@ -33,10 +33,10 @@ const AppliedJobsCard = ({ job }: { job: AppliedJobs }) => {
             </div>
             <div className="flex items-center space-x-2 sm:space-x-4 mt-4">
               <div className="text-[16px] text-black text-opacity-80 px-3 sm:px-6 py-1 rounded-full bg-opacity-30 font-semibold capitalize bg-green-400">
-                {job.remote_or_onsite}
+                {job.location}
               </div>
               <div className="text-[16px] text-black text-opacity-80 px-3 sm:px-6 py-1 rounded-full bg-opacity-30 font-semibold capitalize bg-red-400">
-                {job.jobtype}
+                {job.job_type}
               </div>
             </div>
           </div>
