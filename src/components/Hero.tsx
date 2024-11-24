@@ -1,14 +1,24 @@
 import heroImg from "@/assets/images/hero.svg";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Hero = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, // Animation duration in ms
+      offset: 100, // Distance to trigger animation
+      easing: "ease-in-out",
+    });
+  }, []);
   return (
     <div className="py-14">
       <div className="w-full flex flex-col items-center justify-center">
         <div className="w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-4">
           {/* content */}
-          <div>
+          <div data-aos="fade-right">
             <h1 className="text-[28px] sm:text-[35px] lg:text-[45px] xl:text-[60px] text-[#05264e]leading-[3rem] lg:leading-[4rem] font-extrabold">
-              The <span className="text-indigo-500">Easiest Way</span> <br /> To
+              The <span className="text-blue-600">Easiest Way</span> <br /> To
               Get Your New Job
             </h1>
             <p className="text-[#4f5e64] text-[16px] md:text-[18px] mt-4">
@@ -40,15 +50,19 @@ const Hero = () => {
                   placeholder="Search Job ..."
                   className="py-4 outline-none"
                 />
-                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none bg-indigo-600 text-[16px] rounded-md font-semibold text-white px-6 py-2">
+                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none bg-blue-600 text-[16px] rounded-md font-semibold text-white px-6 py-2">
                   Search
                 </button>
               </div>
             </div>
           </div>
           {/* image */}
-          <div className="hidden lg:block">
-            <img src={heroImg} className="lg:w-[700px] lg:h-[400px]" alt="hero" />
+          <div className="hidden lg:block" data-aos="fade-left">
+            <img
+              src={heroImg}
+              className="lg:w-[700px] lg:h-[400px]"
+              alt="hero"
+            />
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const useCategories = () => {
-  const { data: categories = [], refetch } = useQuery({
+  const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/categories");
@@ -12,7 +12,7 @@ const useCategories = () => {
     },
   });
 
-  return [categories, refetch];
+  return [categories];
 };
 
 export default useCategories;

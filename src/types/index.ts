@@ -49,3 +49,14 @@ export interface AppliedJobs {
   salary: string;
   email: string;
 }
+export type Company = {
+  _id: string;
+  image: string;
+};
+export type Review = {
+  _id: string;
+  image: string;
+  name: string;
+  rating: number;
+  review: string;
+};
