@@ -1,7 +1,8 @@
-import heroImg from "@/assets/images/hero.svg";
+import heroImg from "@/assets/hero.svg";
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useTheme } from "./theme-provider";
 
 const Hero = () => {
   useEffect(() => {
@@ -11,6 +12,7 @@ const Hero = () => {
       easing: "ease-in-out",
     });
   }, []);
+  const { theme } = useTheme();
   return (
     <div className="py-14">
       <div className="w-full flex flex-col items-center justify-center">
@@ -21,11 +23,16 @@ const Hero = () => {
               The <span className="text-blue-600">Easiest Way</span> <br /> To
               Get Your New Job
             </h1>
-            <p className="text-[#4f5e64] text-[16px] md:text-[18px] mt-4">
+            <p
+              className={`text-[16px] md:text-[18px] mt-4 ${
+                theme === "dark" ? "text-gray-200" : "text-[#4f5e64]"
+              }`}
+            >
               Explore thousands of job opportunities with all the information
               you need. Its your future. Come find it. Manage all your job
               application from start to finish.
             </p>
+
             {/* search box */}
             <div className="mt-[1.5rem]">
               <div className="relative flex items-center h-12 rounded-lg border-2 bg-white overflow-hidden w-full sm:w-[75%] md:w-[60%] lg:w-[80%]">
