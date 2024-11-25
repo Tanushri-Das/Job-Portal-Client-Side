@@ -1,3 +1,4 @@
+import ContactUs from "@/components/Contact/Contact";
 import FeaturedJobs from "@/components/FeaturedJobs";
 import Hero from "@/components/Hero";
 import JobCategory from "@/components/JobCategory";
@@ -25,6 +26,7 @@ const Home = () => {
         <FeaturedJobs />
         <TrustedCompanies />
         <Testimonials />
+        <ContactUs />
       </div>
     </>
   );

@@ -64,3 +64,8 @@ export type ButtonProps = {
   name: string;
   onClick?: () => void;
 };
+export type Contact={
+  name: string,
+  email: string,
+  message: string,
+}

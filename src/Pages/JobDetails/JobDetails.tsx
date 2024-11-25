@@ -1,4 +1,3 @@
-import JobCard from "@/components/JobCard";
 import { useTheme } from "@/components/theme-provider";
 import useAppliedJobs from "@/Hooks/useAppliedJobs";
 import useAuth from "@/Hooks/useAuth";
