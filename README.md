@@ -8,4 +8,4 @@ Features:
 * Real-Time Updates: Integrated with TanStack Query for real-time data updates and synchronization.
 * Custom Scrollbar: Enhances the UI with a smooth and visually appealing scrollbar design.
 * Responsive Design: Fully responsive and optimized for all screen sizes. <br>
-Live Site Link:https://job-portal-c39ed.web.app/
+# Live Site Link:https://job-portal-c39ed.web.app/
