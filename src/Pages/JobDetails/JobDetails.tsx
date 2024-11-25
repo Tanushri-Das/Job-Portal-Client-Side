@@ -2,11 +2,18 @@ import { useTheme } from "@/components/theme-provider";
 import useAppliedJobs from "@/Hooks/useAppliedJobs";
 import useAuth from "@/Hooks/useAuth";
 import { AppliedJobs, Job } from "@/types";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import Swal from "sweetalert2";
 import { BiMoney } from "react-icons/bi";
 import { FaMapLocation } from "react-icons/fa6";
 import { Helmet } from "react-helmet-async";
+import { useEffect, useState } from "react";
+import JobCard from "@/components/JobCard";
 
 const JobDetails = () => {
   const job = useLoaderData() as Job;
@@ -15,6 +22,7 @@ const JobDetails = () => {
   const currentLocation = useLocation();
   const [appliedJobs, refetch] = useAppliedJobs();
   const { theme } = useTheme();
+  const [relatedJobs, setRelatedJobs] = useState<Job[]>([]);
 
   // Check if already applied
   const alreadyApplied = appliedJobs?.some(
@@ -100,7 +108,23 @@ const JobDetails = () => {
       });
     }
   };
+  useEffect(() => {
+    // Fetch related jobs based on role
+    const fetchRelatedJobs = async () => {
+      try {
+        const res = await fetch(`http://localhost:5000/jobs?role=${job.role}`);
+        const data = await res.json();
+        // Exclude the current job from related jobs
+        setRelatedJobs(
+          data.filter((relatedJob: Job) => relatedJob._id !== job._id)
+        );
+      } catch (error) {
+        console.error("Error fetching related jobs:", error);
+      }
+    };
 
+    fetchRelatedJobs();
+  }, [job.role, job._id]);
   return (
     <>
       <Helmet>
@@ -201,6 +225,24 @@ const JobDetails = () => {
           </p>
           <h1 className="text-xl font-semibold mt-6">Experience</h1>
           <p className="mt-4 text-black text-opacity-70">{job.experience}</p>
+          {/* Related Jobs */}
+          <div className="mt-8">
+            <h1 className="text-xl font-semibold mb-4">Related Job Openings</h1>
+            <>
+              {relatedJobs.length > 0 ? (
+                relatedJobs.map((relatedJob) => (
+                  <Link
+                    to={`/jobdetails/${relatedJob._id}`}
+                    key={relatedJob._id}
+                  >
+                    <JobCard job={relatedJob} />
+                  </Link>
+                ))
+              ) : (
+                <p>No related jobs found.</p>
+              )}
+            </>
+          </div>
         </div>
       </div>
     </>
