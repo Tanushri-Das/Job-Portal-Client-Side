@@ -6,7 +6,7 @@ const TrustedCompanies = () => {
   const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/companies")
+    fetch("https://job-portal-server-side-tau.vercel.app/companies")
       .then((res) => res.json())
       .then((data) => setCompanies(data));
   }, []);

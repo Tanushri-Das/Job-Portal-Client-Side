@@ -8,7 +8,7 @@ const useAppliedJobs = () => {
     queryKey: ["appliedJobs", user?.email],
     enabled: !loading && !!user?.email,
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/applied-jobs?email=${user?.email}`);
+      const res = await fetch(`https://job-portal-server-side-tau.vercel.app/applied-jobs?email=${user?.email}`);
       if (!res.ok) {
         throw new Error("Failed to fetch applied jobs");
       }

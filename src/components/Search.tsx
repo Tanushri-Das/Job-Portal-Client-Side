@@ -441,20 +441,10 @@ import {
 import { Job, SearchJob } from "@/types";
 import JobCard from "./JobCard";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 type FilterField = "role" | "type" | "location" | "experience";
 
 const Search = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1200, // Animation duration in ms
-      offset: 100, // Distance to trigger animation
-      easing: "ease-in-out",
-    });
-  }, []);
   const [jobs] = useJobs(); // Fetch jobs using custom hook
   const [filters, setFilters] = useState<SearchJob>({
     role: "",
@@ -509,10 +499,7 @@ const Search = () => {
       />
 
       {/* Filter Section */}
-      <div
-        data-aos="zoom-in"
-        className="w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-9 gap-8 items-center"
-      >
+      <div className="w-[90%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-9 gap-8 items-center">
         {/* Role Filter */}
         <Select
           value={filters.role}

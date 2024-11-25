@@ -4,7 +4,7 @@ const useCategories = () => {
   const { data: categories = [] } = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/categories");
+      const res = await fetch("https://job-portal-server-side-tau.vercel.app/categories");
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }

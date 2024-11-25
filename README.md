@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+Job Portal Web Application
+Features:
+# Advanced Job Search: Filter jobs by role, type, location, and experience for a seamless job search experience.
+# Firebase Authentication: Secure login with options for custom credentials and Google sign-in.
+# Job Application System: Apply for jobs effortlessly and view a filtered list of your applied jobs.
+# MongoDB Integration: Efficiently stores and retrieves job categories, listings, and user applications.
+# Dark/Light Mode: Toggle between themes for a personalized user interface.
+# Real-Time Updates: Integrated with TanStack Query for real-time data updates and synchronization.
+# Custom Scrollbar: Enhances the UI with a smooth and visually appealing scrollbar design.
+# Responsive Design: Fully responsive and optimized for all screen sizes.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Live Site:https://job-portal-c39ed.web.app/
+Technology Used: React.js, Tailwind Css, Shadcn Ui, Firebase, Typescript, Swiper Js, React icons, React hook form, Tanstack Query, Sweetalert2, Node.js,Express.js, MongoDB.

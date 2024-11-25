@@ -69,7 +69,7 @@ const JobDetails = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:5000/applied-jobs", {
+      const res = await fetch("https://job-portal-server-side-tau.vercel.app/applied-jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +112,7 @@ const JobDetails = () => {
     // Fetch related jobs based on role
     const fetchRelatedJobs = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/jobs?role=${job.role}`);
+        const res = await fetch(`https://job-portal-server-side-tau.vercel.app/jobs?role=${job.role}`);
         const data = await res.json();
         // Exclude the current job from related jobs
         setRelatedJobs(

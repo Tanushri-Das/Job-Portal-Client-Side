@@ -10,10 +10,9 @@ const Testimonials: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://job-portal-server-side-tau.vercel.app/reviews")
       .then((res) => res.json())
-      .then((data) => setReviews(data))
-      .catch((error) => console.error("Failed to fetch reviews:", error));
+      .then((data) => setReviews(data));
   }, []);
 
   return (
@@ -72,9 +71,7 @@ const Testimonials: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-[16px] mt-4">
-                  {review.review}
-                </h3>
+                <h3 className="text-[16px] mt-4">{review.review}</h3>
               </div>
             </SwiperSlide>
           ))}

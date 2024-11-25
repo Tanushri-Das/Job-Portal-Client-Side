@@ -88,7 +88,7 @@ const Signup = () => {
         console.log("User profile updated successfully");
 
         // Save full data to the database
-        const saveUserResponse = await fetch("http://localhost:5000/users", {
+        const saveUserResponse = await fetch("https://job-portal-server-side-tau.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

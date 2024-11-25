@@ -1,24 +1,14 @@
 import heroImg from "@/assets/hero.svg";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 import { useTheme } from "./theme-provider";
 
 const Hero = () => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1200, // Animation duration in ms
-      offset: 100, // Distance to trigger animation
-      easing: "ease-in-out",
-    });
-  }, []);
   const { theme } = useTheme();
   return (
     <div className="py-14">
       <div className="w-full flex flex-col items-center justify-center">
         <div className="w-[90%] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-4">
           {/* content */}
-          <div data-aos="fade-right">
+          <div>
             <h1 className="text-[28px] sm:text-[35px] lg:text-[45px] xl:text-[60px] text-[#05264e]leading-[3rem] lg:leading-[4rem] font-extrabold">
               The <span className="text-blue-600">Easiest Way</span> <br /> To
               Get Your New Job
@@ -64,7 +54,7 @@ const Hero = () => {
             </div>
           </div>
           {/* image */}
-          <div className="hidden lg:block" data-aos="fade-left">
+          <div className="hidden lg:block">
             <img
               src={heroImg}
               className="lg:w-[700px] lg:h-[400px]"

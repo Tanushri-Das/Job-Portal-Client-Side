@@ -41,7 +41,7 @@ const routes = createBrowserRouter([
         path: "/jobdetails/:id",
         element: <JobDetails />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/jobs/${params.id}`),
+          fetch(`https://job-portal-server-side-tau.vercel.app/jobs/${params.id}`),
       },
     ],
   },

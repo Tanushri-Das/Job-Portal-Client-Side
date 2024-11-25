@@ -9,7 +9,7 @@ const useGetUsers = () => {
     enabled: !loading && !!user?.email,
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/users?email=${user?.email}`
+        `https://job-portal-server-side-tau.vercel.app/users?email=${user?.email}`
       );
       if (!res.ok) {
         throw new Error("Failed to fetch user data");

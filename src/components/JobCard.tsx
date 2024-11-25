@@ -1,22 +1,13 @@
 import { Job } from "@/types";
 import { BiMoney } from "react-icons/bi";
 import { FaMapLocation } from "react-icons/fa6";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+
 import { useTheme } from "./theme-provider";
 
 const JobCard = ({ job }: { job: Job }) => {
-  useEffect(() => {
-    AOS.init({
-      duration: 1200, // Animation duration in ms
-      offset: 100, // Distance to trigger animation
-      easing: "ease-in-out",
-    });
-  }, []);
   const { theme } = useTheme();
   return (
-    <div data-aos="zoom-out">
+    <div>
       <div
         className={`p-4 mb-6 relative border-2 cursor-pointer hover:scale-110 hover:shadow-sm transition-all duration-300 rounded-lg border-opacity-10 ${
           theme === "dark" ? "border-gray-100" : "border-gray-500"

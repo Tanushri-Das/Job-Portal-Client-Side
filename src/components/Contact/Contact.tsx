@@ -7,18 +7,10 @@ import { Contact } from "@/types";
 import Button from "../Button";
 import "./Contact.css";
 import Heading from "../Heading";
-import { useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 const ContactUs: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<Contact>();
   const [phoneNumber, setPhoneNumber] = useState("+880");
-  useEffect(() => {
-    AOS.init({
-      duration: 1200,
-    });
-  }, []);
 
   const onSubmit = async (data: Contact) => {
     const countryCode = phoneNumber.slice(0, phoneNumber.length - 10);
@@ -31,13 +23,16 @@ const ContactUs: React.FC = () => {
       message: data.message,
     };
     try {
-      const res = await fetch("http://localhost:5000/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newContact),
-      });
+      const res = await fetch(
+        "https://job-portal-server-side-tau.vercel.app/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newContact),
+        }
+      );
 
       const resData = await res.json();
       if (resData.insertedId) {
@@ -62,7 +57,7 @@ const ContactUs: React.FC = () => {
   };
 
   return (
-    <div data-aos="zoom-out" className="pb-14">
+    <div className="pb-14">
       <Heading
         mainHeading="Contact Us"
         subHeading="Need updated job news, stay connected with us"

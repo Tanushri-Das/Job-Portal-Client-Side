@@ -8,7 +8,7 @@ const AllJobs = () => {
   const [jobs] = useJobs();
 
   return (
-    <div className="my-14 w-[90%] mx-auto overflow-x-hidden">
+    <div className="my-14 w-[90%] mx-auto">
       <Heading
         mainHeading="Explore All Job Opportunities"
         subHeading="Find your next career move among various industries and locations"
@@ -17,13 +17,11 @@ const AllJobs = () => {
         <h1 className="text-lg font-semibold">Show Result : {jobs.length}</h1>
       </div>
       <div className="space-y-8">
-        {jobs?.map((job: Job) => {
-          return (
-            <Link to={`/jobdetails/${job._id}`} key={job._id}>
-              <JobCard job={job} />
-            </Link>
-          );
-        })}
+        {jobs?.map((job: Job) => (
+          <Link to={`/jobdetails/${job._id}`} key={job._id}>
+            <JobCard job={job} />
+          </Link>
+        ))}
       </div>
     </div>
   );

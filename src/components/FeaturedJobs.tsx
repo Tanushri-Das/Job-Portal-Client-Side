@@ -9,7 +9,7 @@ const FeaturedJobs = () => {
   const [jobs] = useJobs();
 
   return (
-    <div className="pb-14 overflow-x-hidden">
+    <div className="pb-14">
       <Heading
         mainHeading="Featured Jobs"
         subHeading="Know your worth and find the job that qualify your life"
