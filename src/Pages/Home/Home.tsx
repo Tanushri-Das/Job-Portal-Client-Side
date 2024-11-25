@@ -5,22 +5,28 @@ import Search from "@/components/Search";
 import Testimonials from "@/components/Testimonials";
 import { useTheme } from "@/components/theme-provider";
 import TrustedCompanies from "@/components/TrustedCompanies";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   const { theme } = useTheme();
   return (
-    <div
-      className={`transition-colors ${
-        theme === "dark" ? "bg-gray-800 text-gray-200" : "bg-white text-black"
-      }`}
-    >
-      <Hero />
-      <Search />
-      <JobCategory />
-      <FeaturedJobs />
-      <TrustedCompanies />
-      <Testimonials />
-    </div>
+    <>
+      <Helmet>
+        <title>Quick Hire | Home</title>
+      </Helmet>
+      <div
+        className={`transition-colors ${
+          theme === "dark" ? "bg-gray-800 text-gray-200" : "bg-white text-black"
+        }`}
+      >
+        <Hero />
+        <Search />
+        <JobCategory />
+        <FeaturedJobs />
+        <TrustedCompanies />
+        <Testimonials />
+      </div>
+    </>
   );
 };
 

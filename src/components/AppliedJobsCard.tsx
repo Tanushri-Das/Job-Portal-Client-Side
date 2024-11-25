@@ -14,7 +14,7 @@ const AppliedJobsCard = ({ job }: { job: AppliedJobs }) => {
             <img
               src={job.image}
               alt={job.role}
-              className="w-[100px] h-[100px]"
+              className="w-[90px] sm:w-[100px] h-[90px] sm:h-[100px]"
             />
           </div>
           <div>

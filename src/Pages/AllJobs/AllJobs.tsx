@@ -8,7 +8,7 @@ const AllJobs = () => {
   const [jobs] = useJobs();
 
   return (
-    <div className="my-14 w-[90%] mx-auto">
+    <div className="my-14 w-[90%] mx-auto overflow-x-hidden">
       <Heading
         mainHeading="Explore All Job Opportunities"
         subHeading="Find your next career move among various industries and locations"

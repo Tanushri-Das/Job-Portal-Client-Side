@@ -6,6 +6,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { useTheme } from "@/components/theme-provider";
 import useAuth from "@/Hooks/useAuth";
 import useGetUsers from "@/Hooks/useGetUsers";
+import Button from "./Button";
 
 const Header = () => {
   const { user, logOut } = useAuth();
@@ -34,14 +35,7 @@ const Header = () => {
         <div className="text-lg font-bold lg:flex-grow-0">
           <Link to="/">
             <div className="flex justify-center items-center">
-              <h1
-                className="text-3xl font-bold italic lg:block 
-        text-[#151515] tracking-wide dark:text-gray-300
-        transition-all duration-300 ease-in-out 
-        hover:scale-105"
-              >
-                Quick<span className="text-[#FF3811]">Hire</span>
-              </h1>
+              <h1 className="text-3xl font-bold text-blue-600">Quick Hire</h1>
             </div>
           </Link>
         </div>
@@ -104,12 +98,7 @@ const Header = () => {
             )}
 
             {user ? (
-              <button
-                onClick={handleLogout}
-                className="px-6 rounded-lg py-2 bg-blue-600 text-white font-semibold transition-all duration-300"
-              >
-                Logout
-              </button>
+              <Button name={"Logout"} onClick={handleLogout} />
             ) : (
               <NavLink
                 to="/login"
@@ -215,7 +204,7 @@ const Header = () => {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="w-[90%] sm:w-1/2 px-6 rounded-lg py-2 bg-blue-600 text-white font-semibold transition-all duration-300"
+                className="w-[90%] sm:w-1/2 px-6 py-2 font-semibold bg-blue-700 hover:bg-blue-900 transition-all duration-300 rounded-md text-white"
               >
                 Logout
               </button>

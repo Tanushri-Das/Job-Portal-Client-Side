@@ -57,7 +57,7 @@ const Hero = () => {
                   placeholder="Search Job ..."
                   className="py-4 outline-none"
                 />
-                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 cursor-pointer outline-none bg-blue-600 text-[16px] rounded-md font-semibold text-white px-6 py-2">
+                <button className="absolute right-1 top-1/2 transform -translate-y-1/2 transition-all duration-300 cursor-pointer outline-none bg-blue-700 hover:bg-blue-900 text-[16px] rounded-md font-semibold text-white px-6 py-2">
                   Search
                 </button>
               </div>

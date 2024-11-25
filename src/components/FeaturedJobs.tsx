@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Job } from "@/types";
 import JobCard from "./JobCard";
 import useJobs from "@/Hooks/useJobs";
+import Button from "./Button";
 
 const FeaturedJobs = () => {
   const [jobs] = useJobs();
@@ -22,9 +23,7 @@ const FeaturedJobs = () => {
       </div>
       <Link to="/alljobs">
         <div className="text-center mt-8">
-          <button className="px-8 py-2 font-semibold bg-blue-700 hover:bg-blue-900 transition-all duration-300 rounded-lg text-white">
-            View All Job
-          </button>
+          <Button name={"View All Jobs"} />
         </div>
       </Link>
     </div>

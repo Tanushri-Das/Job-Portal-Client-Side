@@ -60,3 +60,7 @@ export type Review = {
   rating: number;
   review: string;
 };
+export type ButtonProps = {
+  name: string;
+  onClick?: () => void;
+};

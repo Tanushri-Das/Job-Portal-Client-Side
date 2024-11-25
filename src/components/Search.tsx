@@ -518,7 +518,7 @@ const Search = () => {
           value={filters.role}
           onValueChange={(value) => handleFilterChange("role", value)}
         >
-          <SelectTrigger className="font-semibold">
+          <SelectTrigger className="font-semibold text-lg py-5">
             <SelectValue placeholder="Job Role" />
           </SelectTrigger>
           <SelectContent>
@@ -538,14 +538,13 @@ const Search = () => {
           value={filters.type}
           onValueChange={(value) => handleFilterChange("type", value)}
         >
-          <SelectTrigger className="font-semibold">
+          <SelectTrigger className="font-semibold text-lg py-5">
             <SelectValue placeholder="Job Type" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="Full Time">Full Time</SelectItem>
             <SelectItem value="Part Time">Part Time</SelectItem>
             <SelectItem value="Contract">Contract</SelectItem>
-            <SelectItem value="Project Based">Project Based</SelectItem>
           </SelectContent>
         </Select>
 
@@ -554,7 +553,7 @@ const Search = () => {
           value={filters.location}
           onValueChange={(value) => handleFilterChange("location", value)}
         >
-          <SelectTrigger className="font-semibold">
+          <SelectTrigger className="font-semibold text-lg py-5">
             <SelectValue placeholder="Location" />
           </SelectTrigger>
           <SelectContent>
@@ -569,7 +568,7 @@ const Search = () => {
           value={filters.experience}
           onValueChange={(value) => handleFilterChange("experience", value)}
         >
-          <SelectTrigger className="font-semibold">
+          <SelectTrigger className="font-semibold text-lg py-5">
             <SelectValue placeholder="Experience" />
           </SelectTrigger>
           <SelectContent>
@@ -584,7 +583,7 @@ const Search = () => {
         <div>
           <button
             onClick={handleSearch}
-            className="w-full px-6 rounded-lg py-2 font-semibold bg-blue-700 hover:bg-blue-900 transition-all duration-300 text-white"
+            className="w-full px-6 rounded-md py-2 font-semibold bg-blue-700 hover:bg-blue-900 transition-all duration-300 text-white text-[16px]"
           >
             Search
           </button>
